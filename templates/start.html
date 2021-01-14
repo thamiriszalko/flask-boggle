@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boggle Game</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="title">
+    <h1>Boggle Game</h1>
+</div>
+<div id="max-score" class="container">
+    Highest score: {% if session['highest_score'] %} {{ session['highest_score'] }} {% else %} 0 {% endif %}
+</div>
+<div class="game">
+    <table>
+    {% for list in board %}
+        <tr>
+            {% for letter in list %}
+                <td>
+                    {{ letter }}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+<form method="POST" action="" class="form-action">
+    <input type="text" id="guess" placeholder="Write a word">
+    <button id="submit-button" type="submit">Guess!</button>
+</form>
+</div>
+<script src="https://unpkg.com/jquery"></script>
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
+<script src="/static/script.js"></script>
+<div id="message" class="container"></div>
+<div id="score" class="container"></div>
+<script>
+    let game = new BoggleGame(60);
+</script>
+</body>
+</html>
